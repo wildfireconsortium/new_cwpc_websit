@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta name="description" content="Download the Scorecard and fill it out individually or as a group. 
+    Customize questions to your context and take a holistic approach for a safe, healthy, and resilient community."/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G066X572LF"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-G066X572LF');
+     </script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/style/style.css" />
+    <script src="https://kit.fontawesome.com/e29cb68718.js" crossorigin="anonymous" async></script>
+    <title>Instructions</title>
+  </head>
+
+  <body >
+    <div id="header-row" name="header-row">
+    </div>
+    <div id="scorecard-container" class="container">
+      <h1>Instructions</h1>
+      <dialog id="form-dialog">
+        <button autofocus style="float: right;">Close</button><br>
+        <p id="submit-status-message">Form Dialog</p>
+      </dialog>
+      <div class="modal fade" id="formPopup" tabindex="-1" role="dialog" data-backdrop="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="formTitle"></h4>
+              <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" onclick="closeFormPopup()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="form-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="closeFormPopup()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scorecard-content">
+        <p>
+          The Scorecard can be downloaded 
+          <button id="btn-link" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('download','using_the_scorecard')">here</button>
+          and contains three documents: instructions, spreadsheet, and a pdf file.
+        </p>
+        <p>
+          Once you have downloaded the Scorecard, you can fill out the scorecard individually or, most likely, you will 
+          form a group to go through and complete the scorecard together. You can fill out questions that are relevant to 
+          you. We do encourage everyone to view the questions and have a holistic approach to address what else may be 
+          considered to achieve a safe, healthy and resilient community. View <a href="/faq"> Frequently Asked Questions</a>.
+        </p>
+      </div>
+      <div id="scorecardInfographic">
+        <img src="assets/images/scorecardInfographicMain.png" alt="Process of analyzing the wildfire scorecard">
+      </div>
+    </div>
+    <div id="footer-container"></div>
+
+  <script src="/assets/javascript/footer.js"></script>
+  <script src="/assets/javascript/header.js"></script>
+  <script src="/assets/javascript/common.js"></script>
+  <script type="text/javascript" src="https://api.useberry.com/integrations/liveUrl/scripts/useberryScript.js"></script> 
+
+  <script>
+    window.onload = (event) => {
+      generateHeader("header-row");
+      generateStandardFooter();
+      switchNavActive();
+    };
+    const pageUrlParams = new URLSearchParams(window.location.search);
+      const formType = pageUrlParams.get('form');
+      const submitStatus = pageUrlParams.get('status');
+      const messageDialog = document.getElementById('form-dialog'); // Get dialog reference
+      if (submitStatus === "success") {
+        messageDialog.classList.add('success');
+        const pTag = messageDialog.querySelector('p'); 
+
+        switch(formType){
+          case 'download':
+            const downloadElement = document.createElement('a');
+            downloadElement.href = '/assets/content/WildfireScorecard-CWPC-01-31-24v02.zip';
+            downloadElement.download = 'WildfireScorecard-CWPC-01-31-24v02.zip';
+            downloadElement.click();
+
+            pTag.textContent = "Thank you for downloading! If you have any questions or need assistance, feel free to contact us";
+          break;
+        }
+        messageDialog.showModal(); 
+      }
+      else{
+        messageDialog.classList.add('error');
+        const pTag = messageDialog.querySelector('p'); 
+        // Set the value of the p tag's content
+        pTag.textContent = "Error submitting the form, please try again later."; 
+      }
+
+      messageDialog.addEventListener("click", (event) => { // Attach to dialog
+        if (event.target.matches('button')) { // Check if button clicked
+          messageDialog.close();
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      });
+  </script>
+  </body>
+</html>

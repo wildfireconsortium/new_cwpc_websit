@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="collabForm" method="POST" action="/submit-collab-form">
+      <p>Providing your contact information enables us to share best practices, communicate updates, and network with our global wildfire prevention community.</p>
+      <input type="hidden" name="pageName" id="">
+      <div class="form-group">
+        <label for="firstName" >*First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">*Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">*Email</label>
+        <input type="email" id="email" name="email" required>
+      </div> 
+      <div class="form-group">
+        <label for="organization">Organization</label>
+        <input type="text" id="organization" name="organization">
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role">
+      </div>
+      <div class="form-group">
+        <label for="zipCode">*Zip/Postal Code </label>
+        <input type="text" id="zipCode" name="zipCode" required>
+      </div>
+      <div style="margin-bottom: 0;">
+        Interested in collaborating:
+      </div> </div>
+      <div class="form-check">
+        <input type="checkbox" id="pilotScorecard" name="pilotScorecard">
+        <label for="pilotScorecard">Piloting scorecard</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="generalCollaboration" name="generalCollaboration">
+        <label for="generalCollaboration">General collaboration</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="toShare" name="toShare">
+        <label for="toShare">Sharing data & learnings</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe">Subscribe to updates, events and news</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="other" name="other">
+        <label for="other">Other</label>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="message">Message</label>
+       <textarea id="message" name="message" cols="50"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <input class="form-submit-button" type="submit" value="Collaborate">
+      </div>
+    </form>
+    <div id="policy-container">
+      By clicking "Collaborate" <br>
+      you agree to our <a href="/assets/content/DataProtectionPolicy.pdf" target="_blank">Data Protection Policy</a>
+    </div>
+    <script src="/assets/javascript/common.js"></script>
+    <script>
+     $('#collabForm').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Perform validation (if needed)
+      if (!$('#collabForm').valid()) {
+        return; // Stop submission if validation fails
+      }
+      const currentPagePath = window.location.pathname;
+      console.log(currentPagePath);
+      $.ajax({
+        url: '/submit-collab-form',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          $('#message').html(response.message);
+          $('#collabForm')[0].reset(); // Clear the form
+        },
+        error: function(error) {
+          console.error(error);
+          $('#message').html('error');
+        }
+      });
+    });
+    </script>
+</body>
+</html>

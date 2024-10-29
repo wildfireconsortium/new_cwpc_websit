@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="feedbackForm" method="POST" action="/submit-feedback-form" enctype="multipart/form-data">
+      <p>Providing your contact information enables us to share best practices, communicate updates, and network with our global wildfire prevention community.</p>
+      <input type="hidden" name="pageName" id="">
+      <div class="form-group">
+        <label for="firstName">*First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">*Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">*Email</label>
+        <input type="email" id="email" name="email" required>
+      </div> 
+      <div class="form-group">
+        <label for="organization">Organization</label>
+        <input type="text" id="organization" name="organization">
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role">
+      </div>
+      <div class="form-group">
+        <label for="zipCode">*Zip/Postal Code</label>
+        <input type="text" id="zipCode" name="zipCode" required>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe">Subscribe to Updates, Events and News</label>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+       <textarea id="message" name="message" cols="50"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="files"> <span style = "color: #FFAC0D"> Upload Files </span> (Images, PDFs, XLS(x), Max 20MB each) </label>
+          <input type="file" id="files" name="files" style="color: black"
+          multiple accept=".jpg,.jpeg,.png,.svg,.pdf,.doc,.docx,.xlsx,.xls,.ppt">
+       </div>  
+      </div>
+      <div class="form-group">
+        <label for="links">Links:</label>
+       <textarea id="links" name="links" cols="50" placeholder="If the file is too large or the extension is not accepted,
+        please enter links to your files here."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <input class="form-submit-button" type="submit" value="Submit Feedback">
+      </div>
+    </form>
+    <div id="policy-container">
+      By clicking "Submit Feedback" <br>
+      you agree to our <a href="/assets/content/DataProtectionPolicy.pdf" target="_blank">Data Protection Policy</a>
+    </div>
+    <script src="/assets/javascript/common.js"></script>
+    <script>
+     $('#feedbackForm').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Perform validation (if needed)
+      if (!$('#feedbackForm').valid()) {
+        return; // Stop submission if validation fails
+      }
+      const currentPagePath = window.location.pathname;
+      console.log(currentPagePath);
+      $.ajax({
+        url: '/submit-feedback-form',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          $('#message').html(response.message);
+          $('#feedbackForm')[0].reset(); // Clear the form
+        },
+        error: function(error) {
+          console.error(error);
+          $('#message').html('error');
+        }
+      });
+    });
+    </script>
+</body>
+</html>

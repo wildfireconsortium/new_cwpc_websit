@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta name="description" content="Discover the Wildfire Scorecard, a disaster risk reduction (DRR) tool crafted to 
+  enhance communities' capacity in evaluating, preparing for, handling, and recuperating from wildfire incidents. 
+  Modeled after UNDRR's Disaster Resilience Scorecard for Cities, it incorporates the Ten Essentials of Disaster Resilience">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+   <!-- Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G066X572LF"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-G066X572LF');
+   </script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/style/style.css" />
+  <script src="https://kit.fontawesome.com/e29cb68718.js" crossorigin="anonymous" async></script>
+  <title>Community Wildfire Resilience Scorecard</title>
+</head>
+
+<body>
+  <div id="pageName" hidden>/</div>
+  <div id="header-row" name="header-row">
+  </div>
+  <div class="banner-container">
+    <img class="banner-image" src="/assets/images/CanadaWildfireBannerGradient.png" 
+    alt="Canda June 2023 wildfire, catastrophic forest disaster">
+    <div class="banner-text-right"><sup>1 </sup>Canada wildfires burn record 45.7 million acres in 2023</div>
+    <div class="banner-text-left">
+      <h3 id="banner-h3">Catastrophic Fires Destroy</h3>
+      <h1 id="banner-h1">Community Preparation Saves </h2>
+      <h5 id="banner-h5">Everyone's contribution counts. Together we overcome catastrophe.</h5>
+      <button class="card-button" id="card4-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('download')">Download the scorecard</button>
+    </div>
+    <div class="banner-text-bottom">
+      <p id="banner-credit">Photo credit: BC Wildfire Service
+        <br>
+        <sup>1 </sup>Source Credit: <a href="https://www.theguardian.com/world/2023/nov/09/canada-wildfire-record-climate-crisis#img-1" 
+        aria-label="link to the canada wildfire article in the Guardian">The Guardian </a>
+      </p>
+    </div>
+  </div>
+  
+  <button id="hamburger2" onclick="toggleAdvHamburger()" title="In page menu" aria-label="Click to expand the menu for cards">
+     <i class="fa-solid fa-bars" aria-hidden="true"></i> PAGE MENU
+  </button>
+  
+  <div class="advanced-navbar">
+    <a href="#card1" aria-label="Link to navigate to Prepare card">Prepare</a>
+    <a href="#card2" aria-label="Link to navigate to Scorecard Overview card">Overview</a>
+    <a href="#card3" aria-label="Link to navigate to Assess Risk card">Assess</a>
+    <a href="#card4" aria-label="Link to navigate to Collaborate card">Collaborate</a>
+    <a href="#card5" aria-label="Link to navigate to Subscribe for Updates card">Subscribe</a>
+    <a href="#card6" aria-label="Link to navigate to give us Feedback card">Feedback</a>
+    <a href="#card7" aria-label="Link to navigate to Support us card">Support</a>
+    <a href="#card8" aria-label="Link to navigate to Contribute card">Contribute</a>
+    
+    <!-- Add more links for each card -->
+  </div>
+  <dialog id="form-dialog">
+    <button autofocus style="float: right;">Close</button><br>
+    <p id="submit-status-message">Form Dialog</p>
+  </dialog>
+  <div class="modal fade" id="formPopup" tabindex="-1" role="dialog" data-backdrop="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="formTitle"></h4>
+          <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close" onclick="closeFormPopup()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="form-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  onclick="closeFormPopup()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-container container-fluid">
+    <!-- Card 1 -->
+    <div id="card1" class="card-box">
+      <div class="card-content">
+        <div class="card-title">
+          <h2 id="card1-title">Preparation Matters</h2>
+        </div>
+        <div class="card-text">
+          <img class= "card-image" 
+           src="assets/images/preparationmatters.png"
+           alt = "Community Wildfire Resilience Scorecard - Prevention Web UNDDR CrowdDoing">
+          <h5 style="color:#65A637;">Protect your Community from Wildfires</h5>
+        
+          <p id="para1">Catastrophic wildfires are impacting more and more communities across the globe affecting lives, 
+            homes, water, air, land and wildlife.
+         </p> 
+         <p id="para2">
+          Use the Wildfire Scorecard to assess your wildfire risk, boost preparedness, and take steps to 
+          prevent wildfires in your community.
+          </p>
+          </div>
+          <button class="card-button" id="card5-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('collab')">Pilot with Us</button>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div id="card2" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card4-title">Scorecard Overview</h2></div>
+        <div class="card-image">
+          <img id="scorecard-image" src="assets/images/ScorecardDetails.png" alt="Scorecard Details, what, why, how and who">
+        </div>
+        <div class="sub-card-box" id="whatScorecard">
+          <div class="card-question">
+            <h5>What is the Scorecard?</h5>
+            <a href="#scorecard1" class="toggle-link" aria-label="Read more about what is a scorecard"><i class="fa-solid fa-circle-plus fa-lg"></i></a>  
+          </div>
+          <div class="sub-card-text" id="scorecard1">
+            <p>The Scorecard creates a baseline assessment of how a community is currently positioned through a set of questions that enables it to assess its wildfire resilience.</p>
+            <p>The score enables measurement of a community's progress in moving forward, or  the impact of retrograde steps needed - for example how a community expands into the wildland urban interface (WUI).</p>
+          </div>
+        </div>
+        <div class="sub-card-box" id="whyScorecard">
+          <div class="card-question">
+            <h5>Why do you need the Scorecard?</h5>
+            <a href="#scorecard2" class="toggle-link" aria-label="Read more about why do you need a scorecard?"><i class="fa-solid fa-circle-plus fa-lg"></i></a>  
+          </div>
+          <div class="sub-card-text" id="scorecard2">
+            <p>The Scorecard is intended to provide multiple benefits such as reduction in the likelihood and/or severity
+               and extent of a potential wildfire occurring in your area; reduction in the risk of loss of life or injury,
+                damage to property, loss of key services, harm to air and water quality in the community, to name just a few.</p>  
+          </div>
+        </div>
+        <div class="sub-card-box" id="howScorecard">
+          <div class="card-question">
+            <h5>How do you use the Scorecard?</h5>
+            <a href="#scorecard3" class="toggle-link" aria-label="Read more about how do you use a scorecard?"><i class="fa-solid fa-circle-plus fa-lg"></i></a>  
+          </div>
+          <div class="sub-card-text" id="scorecard3">
+            <p>The Scorecard is designed to encourage holistic thinking about all the elements of wildfire hazard, exposure and vulnerability, at the property,  community and landscape scales.</p>
+            <p>We suggest you start with what and who (Stakeholders) you have at hand, and use the results to embark on the  communication, persuasion and dialog required to bring other stakeholders into alignment and into action.</p>  
+          </div>
+        </div>
+        <div class="sub-card-box" id="whoScorecard">
+          <div class="card-question">
+            <h5>Who is the Scorecard for?</h5>
+            <a href="#scorecard4" class="toggle-link" aria-label="Read more about who is the scorecard for"><i class="fa-solid fa-circle-plus fa-lg"></i></a>  
+          </div>
+          <div class="sub-card-text" id="scorecard4">
+            <p>Anyone in the community with direct or contingent responsibility for wildfire risk reduction through mitigation, adaptation, event response and post event recovery.</p>
+            <p>Also neighborhood or other concerned community members' groups, probably with 
+              expert assistance. You may not have responsibility or jurisdiction over issues raised 
+              in the scorecard but at least know that issues exist and be prepared to advocate for 
+              their resolution.</p>  
+          </div>
+        </div>
+        <button class="card-button" id="card4-button" 
+          style="margin: 2em 0em 2em;" data-toggle="modal" data-target="#formPopup" 
+          onclick="openFormPopup('download')"> Download the scorecard</button>
+        
+          <div class="card-title">Need a zip file extraction tool?</div>
+        
+        <div class="card-btn-group">
+          <div class="fa-icon">
+            <a href="https://www.7-zip.org/download.html" title="Windows" 
+            aria-label="Download button for zip file extraction tool for windows operating system">
+              <i class="fa-brands fa-windows fa-xl" alt="Windows"></i>
+            </a>
+          </div>
+          <div class="fa-icon">
+            <a href="https://www.7-zip.org/download.html" title="Mac" 
+            aria-label="Download button for zip file extraction tool for Mac operating system">
+              <i class="fa-brands fa-apple  fa-xl" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="fa-icon">
+            <a href="https://www.7-zip.org/download.html" title="Linux" 
+            aria-label="Download button for zip file extraction tool for Linux operating system">
+              <i class="fa-brands fa-linux fa-xl" style="color: #ffffff;"></i>
+            </a>
+          </div>
+        </div>
+        <div class="card-text">Problems Downloading? <a href="#card5" aria-label="Problems in Downloading? Contact us">Contact Us</a></div>
+      </div>
+    </div>
+  
+    <!-- Card 3 -->
+    <div id="card3" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card2-title">Assess Wildfire Risk and Readiness in Your Area</h2></div>
+        <img class="card-image" src="assets/images/ScorecardE10wlogos.png" 
+        alt="Wildfire Risk & Resilience community scorecard ten essentials">
+        <div class="card-text">
+          <p>The ARISE-US/CrowdDoing CWPC Community Wildfire Resilience Scorecard follows  the United Nations’ 10 Essentials 
+            framework and incorporates cutting-edge resilience principles with a diverse range of readiness factors.</p>
+          <p>The scorecard enhances existing community wildfire mitigation plans or can serve as an independent assessment tool.</p>
+          <p>With our comprehensive approach, communities become prepared to develop an action plan that substantially 
+            reduces wildfire risk through integrated planning, mitigation, and governance.</p>
+        </div>
+          <br>
+      </div>
+      
+    </div>
+
+    <!-- Card 4 -->
+    <div id="card4" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card3-title">Collaborate With Us</h2></div>
+        <figure>
+          <img class="card-image" src="assets/images/ALDERC_3.jpg" style="margin-bottom: 16px;"
+          alt="Aldercroft Heights locked gate wildfire mitigation evacuation">
+          <figcaption>Successful community pilot gathering in Aldercroft Heights with partners from the Santa Clara County FireSafe Council, 
+            CAL FIRE, Guidewire, Black Swan Analytics, and CWPC. The team is strategizing options to overcome owner's locked gates to ensure safe 
+            alternative emergency evacuation.</figcaption>
+        </figure>
+        <div class="card-text">
+          <p>The global rollout kicks off with a pilot program enabling communities worldwide to test and refine the Wildfire Resilience Scorecard.</p>
+          <p>
+          Pilot the Scorecard!<br>
+          Multi-stakeholder collaboration is critical for preventing catastrophic wildfires.
+          </p>
+        </div>
+        <button class="card-button" id="card3-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('collab')">Collaborate with Us</button>
+      </div>
+    </div>
+    
+    <!-- Card 5 -->
+    <div id="card5" class="card-box">
+      <div class="card-content" id="subscribe">
+        <div class="card-title"><h2 id="card8-title">Subscribe for Updates!</h2></div>
+        <figcaption>Providing your contact information enables us to share best practices, communicate updates, and network with our global wildfire prevention community.</figcaption>
+        <br>
+        <form id="subscribeForm" method="POST" action="/submit-subscribe-form"> 
+          <input type="hidden" name="pageName" id="" value="index">
+        <div class="form-group">
+          <label for="firstName">*First Name</label>
+          <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">*Last Name</label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">*Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="zipCode">*Zip/Postal Code</label>
+          <input type="text" id="zipCode" name="zipCode" required>
+        </div>      
+        <div id="policy-container" style="color: #f6f6f6;">
+          By clicking "Subscribe" <br>
+          you agree to our <a href="/assets/content/DataProtectionPolicy.pdf" target="_blank">Data Protection Policy</a>
+        </div>
+        <input type="submit" class="card-button" value="Subscribe"/>
+        </form>
+      </div>
+    </div>
+
+     <!-- Card 6 -->
+     <div id="card6" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card6-title">Share Feedback & Upload Your Scorecard</h2></div>
+        <div class="card-text">
+          <h5 style="color: #FFAC0D;">
+            Support Creation of Global Best Practices</h5>
+          <p>Help us improve the scorecard by sending feedback, collaborating, and sharing learnings or best practices to accelerate our progress. </p>
+          <p>Upload your community’s scorecard results. </p>
+          <p>Any feedback or suggestions are welcome, whether it is for the website, scorecard, processes, or wildfires in general. </p>
+        </div>
+        <button class="card-button" id="card6-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('feedback')">Feedback & Upload</button>
+      </div>
+    </div>
+ 
+    <!-- Card 7 -->
+    <div id="card7" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card5-title">Need Scorecard Support? We can Help!</h2></div>
+        <div class="card-text">
+          <h5 style="color: #FFAC0D;">Need assistance with the scorecard?</h5>
+          <p>Schedule a meeting with us, together we can assess the best ways to support you.
+          We offer workshops, webinars, on-the ground pilots, and more.</p>
+          <p>For more information please visit <a href="/faq" aria-label="Link to FAQs to learn more"> Frequently Asked Questions (FAQs)</a> page.</p> 
+        </div>
+      <button class="card-button" id="card5-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('contact')">Contact Us</button>
+      </div>
+    </div>
+     <!-- Card 8 -->
+    <div id="card8" class="card-box">
+      <div class="card-content">
+        <div class="card-title"><h2 id="card7-title">Contribute to the Cause</h2></div>
+        <div class="card-text">
+         <p> We invite reciprocity to help future beneficiaries using this toolset by collaborating to improve it. </p>
+          <p>To improve communities' wildfire resilience overall through scorecard enhancements and adoption, ARISE-US/CrowdDoing CWPC invite corporations and institutions to support this effort.
+        </p>
+        </div>
+        <button class="card-button" id="card7-button" data-toggle="modal" data-target="#formPopup" onclick="openFormPopup('support')">Support Wildfire Prevention</button>
+      </div>
+    </div>  
+  </div>  
+
+  <button id="back-to-top" aria-label="Link to go back to the top" title="back-to-top"><i class="fa-solid fa-circle-arrow-up fa-2xl"></i></button>
+
+  <div id="footer-container"></div>
+  
+  <!-- page specific scripts -->
+  <script src="/assets/javascript/footer.js"></script>
+  <script src="/assets/javascript/header.js"></script>
+  <script src="/assets/javascript/common.js"></script>
+  <script type="text/javascript" src="https://api.useberry.com/integrations/liveUrl/scripts/useberryScript.js"></script> 
+
+  <script>
+    window.onload = (event) => {
+      generateHeader("header-row");
+      generateStandardFooter();
+      switchNavActive();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="contactForm" method="POST" action="/submit-contact-form">
+      <p>Providing your contact information enables us to share best practices, communicate updates, and network with our global wildfire prevention community.</p>
+      <input type="hidden" name="pageName" id="">
+      <div class="form-group">
+        <label for="firstName" aria-labelledby="firstName" >*First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <span id="fnameError"></span>
+      </div>
+      <div class="form-group">
+        <label for="lastName" aria-labelledby="lastName">*Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email" aria-labelledby="email">*Email</label>
+        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+      </div> 
+      <div class="form-group">
+        <label for="organization" aria-labelledby="organization">Organization</label>
+        <input type="text" id="organization" name="organization">
+      </div>
+      <div class="form-group">
+        <label for="role" aria-labelledby="role">Role</label>
+        <input type="text" id="role" name="role">
+      </div>
+      <div class="form-group">
+        <label for="zipCode" aria-labelledby="zipCode">*Zip/Postal Code </label>
+        <input type="text" id="zipCode" name="zipCode" required>
+      </div>
+      <div class="form-group">
+        <label for="message" aria-labelledby="message">Message</label>
+        <textarea id="message" name="message" cols="50"></textarea>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe" aria-labelledby="subscribe">Subscribe</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="pilot" name="pilot">
+        <label for="pilot" aria-labelledby="pilot">I'm interested in piloting with CWPC</label>
+      </div>
+      <div id="policy-container">
+        By clicking "Contact Us" <br>
+        you agree to our <a href="/assets/content/DataProtectionPolicy.pdf" target="_blank">Data Protection Policy</a>
+      </div>
+
+      <div class="form-group">
+        <input class="form-submit-button" type="submit" value="Contact Us" title="submit button"> 
+        <br>
+      </div>
+    </form>
+    
+    <script src="/assets/javascript/common.js"></script>
+    <script>
+     $('#contactForm').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      $('.error').empty();
+
+      //get form data
+      const fname = $('#firstName').val.trim();
+
+      let isValid = true;
+      const errors={};
+
+      if(fname === ''){
+        isValid = false;
+        errors.fname = 'First name is required';
+      }
+
+      // Perform validation (if needed)
+      if (!isValid) {
+        for(const field in errors){
+          $('#'+field+'Error').html(errors[field]);
+        }
+        return; // Stop submission if validation fails
+      }
+      const currentPagePath = window.location.pathname;
+      console.log(currentPagePath);
+      $.ajax({
+        url: '/submit-contact-form',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          $('#contactForm')[0].reset(); // Clear the form
+        },
+        error: function(error) {
+          console.error(error);
+          
+        }
+      });
+    });
+    </script>
+</body>
+</html>

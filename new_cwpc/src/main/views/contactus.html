@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta name="description" content="Contact for updates form"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G066X572LF"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-G066X572LF');
+     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/style/style.css" />
+    <script src="https://kit.fontawesome.com/e29cb68718.js" crossorigin="anonymous" async></script>
+    <title>Contact Us</title>
+</head>
+<body>
+   <div id="header-row" name="header-row"></div>
+   <dialog id="form-dialog">
+    <button autofocus style="float: right;">Close</button><br>
+    <p id="submit-status-message">Form Dialog</p>
+   </dialog> 
+   <h1 class="contact-form-title">Contact Us</h1>
+    
+    <div id="contact-form-container" class="card-form">
+
+    </div>
+    <div id="footer-container"></div> 
+
+    <script src="/assets/javascript/footer.js"></script>
+    <script src="/assets/javascript/header.js"></script>
+    <script src="/assets/javascript/common.js"></script>
+    
+    <script>
+      window.onload = function() {
+      var contactFormContainer = document.getElementById('contact-form-container');
+      
+      generateHeader("header-row");
+      generateStandardFooter();
+      switchNavActive();
+
+      fetch('/contactform') 
+          .then(response => response.text())
+          .then(data => {
+            contactFormContainer.innerHTML = data;
+            const inputElement = contactFormContainer.querySelector('input[name="pageName"]');
+            inputElement.value = "contact_us"; // Example value
+          })
+          .catch(error => {
+            console.error('Error fetching form:', error);
+          });
+      };
+
+      const pageUrlParams = new URLSearchParams(window.location.search);
+      const submitStatus = pageUrlParams.get('status');
+      const contactDialog = document.getElementById('form-dialog'); // Get dialog reference
+      if (submitStatus === "success") {
+        contactDialog.classList.add('success');
+        const pTag = contactDialog.querySelector('p'); 
+  
+        // Set the value of the p tag's content
+        pTag.textContent = "Thank you for reaching out! We received your message and will get" 
+        +" back to you shortly. Your interest means a lot to us! In the meantime, feel free to explore more about"
+        +" our organization on the website."; 
+        contactDialog.showModal(); 
+      }
+      else{
+        contactDialog.classList.add('error');
+        const pTag = formDialog.querySelector('p'); 
+        // Set the value of the p tag's content
+        pTag.textContent = "Error submitting the form, please try again later."; 
+      }
+
+      contactDialog.addEventListener("click", (event) => { // Attach to dialog
+        if (event.target.matches('button')) { // Check if button clicked
+          contactDialog.close();
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      });
+      </script>
+      
+</body>
+</html>

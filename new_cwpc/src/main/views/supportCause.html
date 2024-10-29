@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="supportCauseForm" method="POST" action="/submit-support-form">
+      <p> Providing your contact information enables us to share best practices, communicate updates, and network with our global wildfire prevention community.</p>
+      <input type="hidden" name="pageName" id="">
+      <div class="form-group">
+        <label for="firstName" aria-required="true">*First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">*Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">*Email</label>
+        <input type="email" id="email" name="email" required>
+      </div> 
+      <div class="form-group">
+        <label for="organization">Organization</label>
+        <input type="text" id="organization" name="organization">
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role">
+      </div>
+      <div class="form-group">
+        <label for="zipCode">*Zip/Postal Code </label>
+        <input type="text" id="zipCode" name="zipCode" required>
+      </div>
+      <div>
+        <h5>Support the  Wildfire Scorecard and Catastrophic Prevention Efforts</h5>
+        <p>
+        I or my organization are interested in supporting the Catastrophic Wildfire Prevention Consortium at CrowdDoing venture in the following ways:
+        </p>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" id="volunteerTime" name="volunteerTime">
+        <label for="share-learnings">Share learnings from the scorecard tests to improve it</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="volunteerTime" name="volunteerTime">
+        <label for="volunteerTime">Volunteer time individually or as a team deployment</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="subjectMatterExpertise" name="subjectMatterExpertise">
+        <label for="subjectMatterExpertise">Subject matter experts</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="dataOrCompute" name="dataOrCompute">
+        <label for="dataOrCompute">Datasets and / or computer systems capacity</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="sponsorOrInKind" name="sponsorOrInKind">
+        <label for="sponsorOrInKind">Sponsorships and other in-kind support</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="funding" name="funding">
+        <label for="funding">Funding</label>
+      </div>                                
+
+      <div class="form-check">
+        <input type="checkbox" id="otherSupport" name="otherSupport">
+        <label for="otherSupport">Other</label>
+      </div>   <br>
+      <div class="form-group">
+        <label for="message">Message</label>
+       <textarea id="message" name="message" cols="50"></textarea>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe">Subscribe</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="pilot" name="pilot">
+        <label for="pilot">I'm interested in piloting with CWPC</label>
+      </div>
+      <div class="form-group">
+        <input class="form-submit-button" type="submit" value="Support Cause">
+      </div>
+    </form>
+    <div id="policy-container">
+      By clicking "Support Cause" <br>
+      you agree to our <a href="/assets/content/DataProtectionPolicy.pdf" target="_blank">Data Protection Policy</a>
+    </div>
+    <script src="/assets/javascript/common.js"></script>
+    <script>
+     $('#supportCauseForm').submit(function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Perform validation (if needed)
+      if (!$('#supportCauseForm').valid()) {
+        return; // Stop submission if validation fails
+      }
+      const currentPagePath = window.location.pathname;
+      console.log(currentPagePath);
+      $.ajax({
+        url: '/submit-support-form',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          $('#message').html(response.message);
+          $('#supportCauseForm')[0].reset(); // Clear the form
+        },
+        error: function(error) {
+          console.error(error);
+          $('#message').html('error');
+        }
+      });
+    });
+    </script>
+</body>
+</html>
